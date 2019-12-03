@@ -2,4 +2,6 @@
 
 zapoctovy program nprg030
 
+---------
+
 
