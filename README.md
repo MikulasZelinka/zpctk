@@ -1,7 +1,3 @@
-# zpctk
-
-zapoctovy program nprg030
-
----------
+# Zapoctovy program 
 
 
