@@ -5,7 +5,10 @@ The program will display a simple GUI which will contain the plot of the Monte C
 and possibly graph runtime of different algorithms.
 ## Dependencies
 tkinter
+
 matplotlib
+
+numpy
 
 ## Usage 
 TODO 
