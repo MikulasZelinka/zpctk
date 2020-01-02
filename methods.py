@@ -14,7 +14,7 @@ def MonteCarlo(n):
     start = time.time()
     inside = 0
     total = 0
-    while total <= n*1000000:
+    while total <= n*10*4:
         a = rng.random()
         b = rng.random()
         if (a*a + b*b) <= 1:
@@ -24,7 +24,8 @@ def MonteCarlo(n):
             total += 1
     pi = 4*(inside/total)
     end = time.time()
-    runtime = round(end - start, 3)
+    #runtime = round(end - start, 3)
+    runtime = end - start
     return pi, runtime
 
 def Gregory(n):
@@ -41,10 +42,9 @@ def Gregory(n):
             pi = pi - (1/denominator)
             denominator += 2
             term = 'even'
-
-        print(pi, denominator, sep='  ')
     end = time.time()
-    runtime = round(end - start, 3)
+    #runtime = round(end - start, 3)
+    runtime = end - start
     pi = 4*pi
     return pi, runtime
 
@@ -64,12 +64,15 @@ def Sinus(n):
     for i in range(n):
         pi = pi + math.sin(pi)
     end = time.time()
-    runtime = round(end - start, 3)
+    #runtime = round(end - start, 3)
+    runtime = end - start
     return pi, runtime
 
 #for i in range(10):
 #    print(Sinus(i))
 
 #print(MonteCarlo(10))
-
-print(Gregory(int(input())))
+iterace = int(input())
+print('Gregory: ', Gregory(iterace))
+print('Sinus: ', Sinus(iterace))
+print('MC: ', MonteCarlo(iterace))
