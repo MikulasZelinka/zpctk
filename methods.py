@@ -1,5 +1,4 @@
 import random as rng
-import tkinter as tk
 import matplotlib.pyplot as plt
 import numpy as np
 import math
