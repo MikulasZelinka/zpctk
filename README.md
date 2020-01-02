@@ -4,8 +4,9 @@ The goal is to compare ways to approximate pi to a set number of decimal digits 
 The program will display a simple GUI which will contain the plot of the Monte Carlo method
 and possibly graph runtime of different algorithms.
 ## Dependencies
-tkinter
-matplotlib
+tkinter,
+matplotlib,
+numpy
 
 ## Usage 
 TODO 
