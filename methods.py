@@ -41,10 +41,13 @@ def Gauss(n):
     pass
 
 def Sinus(n):
+    start = time.time()
     pi = 3
     for i in range(n):
         pi = pi + math.sin(pi)
-    return pi
+    end = time.time()
+    runtime = end - start
+    return pi, runtime
 
 #for i in range(10):
 #    print(Sinus(i))
