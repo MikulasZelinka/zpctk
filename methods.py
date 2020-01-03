@@ -6,34 +6,38 @@ import time
 
 ''' 
     zde budou vsechny funkce, ktere budeme testovat
-    kazda funkce vraci aproximaci pi, cas behu
-    na vstupu funkce je pocet iteraci (pro MonteCarlo je iteraci vybrani 10**6 nahodnych bodu)
+    kazda funkce vraci cas behu a aproximaci pi
+    na vstupu funkce je start a timeout 
 '''
+ref = math.pi
 
-def MonteCarlo(n):
-    start = time.time()
+def MonteCarlo(start, timeout, precision):
+    global ref
     inside = 0
     total = 0
-    while total <= n*10*4:
-        a = rng.random()
-        b = rng.random()
-        if (a*a + b*b) <= 1:
-            inside += 1
-            total += 1
-        else:
-            total += 1
-    pi = 4*(inside/total)
-    end = time.time()
-    #runtime = round(end - start, 3)
+    end = 0
+    pi = 0
+    while end - start < timeout and round(pi, precision) != round(ref, precision):
+        end = time.time()
+        for i in range(10**5):
+            a = rng.random()
+            b = rng.random()
+            if (a*a + b*b) <= 1:
+                inside += 1
+                total += 1
+            else:
+                total += 1
+        pi = 4*(inside/total)
     runtime = end - start
-    return pi, runtime
+    return runtime, pi
 
-def Gregory(n):
-    start = time.time()
+def Gregory(start, timeout, precision):
+    global ref
     denominator = 1
     term = 'even'
     pi = 0
-    for i in range(n):
+    end = 0
+    while end - start < timeout and round(4*pi, precision) != round(ref, precision):
         if term == 'even':
             pi = pi + (1/denominator)
             denominator += 2
@@ -42,11 +46,11 @@ def Gregory(n):
             pi = pi - (1/denominator)
             denominator += 2
             term = 'even'
-    end = time.time()
-    #runtime = round(end - start, 3)
+        end = time.time()
+
     runtime = end - start
     pi = 4*pi
-    return pi, runtime
+    return runtime, pi
 
 
 def Archimedes(n):
@@ -58,21 +62,20 @@ def Machin(n):
 def Gauss(n):
     pass
 
-def Sinus(n):
-    start = time.time()
+def Sinus(start, timeout, precision):
+
+    global ref
     pi = 3
-    for i in range(n):
+    end = 0
+
+    while end - start < timeout and round(pi, precision) != round(ref, precision):
         pi = pi + math.sin(pi)
-    end = time.time()
-    #runtime = round(end - start, 3)
+        end = time.time()
+
     runtime = end - start
-    return pi, runtime
+    return runtime, pi
 
-#for i in range(10):
-#    print(Sinus(i))
-
-#print(MonteCarlo(10))
-iterace = int(input())
-print('Gregory: ', Gregory(iterace))
-print('Sinus: ', Sinus(iterace))
-print('MC: ', MonteCarlo(iterace))
+print(round(ref, 3))
+print('Gregory: ', Gregory(time.time(), 5, 3))
+print('Sinus :', Sinus(time.time(), 5, 3))
+print('MonteCarlo: ', MonteCarlo(time.time(), 5, 3))

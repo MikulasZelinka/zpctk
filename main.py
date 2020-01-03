@@ -12,8 +12,8 @@ import os
    program se bude ovladat z konzole
    vse bude bezet, dokud uzivatel nezada 'exit'
 '''
-
-pocetIteraci = 0
+ref = math.pi
+timeout = 0
 
 def uvod():
     global pocetIteraci
