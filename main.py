@@ -12,12 +12,12 @@ import os
    program se bude ovladat z konzole
    vse bude bezet, dokud uzivatel nezada 'exit'
 '''
-ref = math.pi
+ref = math.pi # referencni hodnota pi
 timeout = 0
 
 def uvod():
     global pocetIteraci
-    print('Tento program porovnava iterativni metody approximace pi na zaklade poctu iteraci')
+    print('Tento program porovnava iterativni metody approximace pi na zaklade poctu desetinnych mist a casu behu programu')
     print()
     print('Porovnavame nasledujici metody: MonteCarlo, Archimedes(polygon), Gregory-Leibniz, Machin, Gauss')
     print()
