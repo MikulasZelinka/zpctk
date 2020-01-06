@@ -29,7 +29,7 @@ def MonteCarlo(start, timeout, precision):
                 total += 1
         pi = 4*(inside/total)
     runtime = end - start
-    return runtime, pi
+    return runtime
 
 def Gregory(start, timeout, precision):
     global ref
@@ -50,7 +50,7 @@ def Gregory(start, timeout, precision):
 
     runtime = end - start
     pi = 4*pi
-    return runtime, pi
+    return runtime
 
 
 def Archimedes(n):
@@ -73,7 +73,7 @@ def Sinus(start, timeout, precision):
         end = time.time()
 
     runtime = end - start
-    return runtime, pi
+    return runtime
 
 print(round(ref, 3))
 print('Gregory: ', Gregory(time.time(), 5, 3))

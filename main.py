@@ -1,8 +1,10 @@
+import methods # methods.py --- testovane metody
+import view # view.py --- zobrazeni
+
 import random as rng
 import math
 import numpy as np
 import matplotlib.pyplot as plt
-import methods
 import time
 import os
 
@@ -14,46 +16,37 @@ import os
 '''
 ref = math.pi # referencni hodnota pi
 timeout = 0
+precision = 0
 
 def uvod():
-    global pocetIteraci
+    global precision
     print('Tento program porovnava iterativni metody approximace pi na zaklade poctu desetinnych mist a casu behu programu')
     print()
     print('Porovnavame nasledujici metody: MonteCarlo, Archimedes(polygon), Gregory-Leibniz, Machin, Gauss')
     print()
-    pocetIteraci = int(input('Zadejte pocet iteraci pro otestovani kazde metody (pro preskoceni testovani zadejte 0): '))
-    if pocetIteraci > 0:
-        print('Vysledky budou v souboru: ', pocetIteraci, '.txt', sep='')
+    precision = int(input('Zadejte pozadovanou presnost (pro preskoceni testovani zadejte 0): '))
+    if precision > 0:
+        print('Vysledky budou v souboru: ', precision, '.txt', sep='')
     else:
         print('Preskakuji testovani')
 
-
-def zobraz():
-    ls = os.listdir()
-    print(ls)
-    soubor = input('Zadejte nazev souboru z ktereho chcete zobrazit data: ')
-    # vezme data ze souboru a graficky je zobrazi
-    # zaroven zobrazi vizualizaci metody monte carlo
-    pass
-
-def zapis(method, runtime, value):
-    global pocetIteraci
-    f = open(f'{pocetIteraci}.txt', 'wb') 
+def zapis(method, runtime):
+    global precision
+    f = open(f'{precision}.txt', 'wb') 
     f.write(method, runtime, value, sep='\n')
     f.close()
 
-def otestuj(pocetIteraci):
+def otestuj(precision):
     # otestuje vsechny metody se zadanym poctem iteraci 
     pass
 
-if pocetIteraci > 0:
-    otestuj(pocetIteraci)
-    # zapis to co funkce vraci do souboru (nazev metody, runtime: , aproximovana hodnota)
-
+if precision > 0:
+    otestuj(precision)
+        # zapis to co funkce vraci do souboru (runtimes pro zadanou metodu)
 else:
-    pass
+    view.zobraz()
  
-# tohle bude loop programu
+# tohle bude hlavni smycka programu
 end = False
 while end == False:
     odpoved = 0
