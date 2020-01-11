@@ -53,29 +53,31 @@ def Gregory(start, timeout, precision):
     return runtime
 
 
-def Archimedes(n):
+def Archimedes(start, timeout, precision):
+    global ref
+
     pass
 
-def Machin(n):
+def Machin(start, timeout, precision):
+    global ref
     pass
 
-def Gauss(n):
+def Gauss(start, timeout, precision):
+    global ref
     pass
 
 def Sinus(start, timeout, precision):
-
     global ref
     pi = 3
     end = 0
-
     while end - start < timeout and round(pi, precision) != round(ref, precision):
         pi = pi + math.sin(pi)
         end = time.time()
 
     runtime = end - start
     return runtime
-
-print(round(ref, 3))
-print('Gregory: ', Gregory(time.time(), 5, 3))
-print('Sinus :', Sinus(time.time(), 5, 3))
-print('MonteCarlo: ', MonteCarlo(time.time(), 5, 3))
+precision = 5 # docasna promenna
+print(round(ref, precision))
+print('Gregory: ', Gregory(time.time(), 5, precision))
+print('Sinus :', Sinus(time.time(), 5, precision))
+print('MonteCarlo: ', MonteCarlo(time.time(), 5, precision))

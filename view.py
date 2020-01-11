@@ -2,6 +2,7 @@ import matplotlib
 import math
 import os
 
+
 def zobraz():
     # vezme data ze souboru a graficky je zobrazi
     # zaroven zobrazi vizualizaci metody Monte Carlo

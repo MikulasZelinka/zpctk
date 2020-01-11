@@ -24,7 +24,7 @@ def uvod():
     print()
     print('Porovnavame nasledujici metody: MonteCarlo, Archimedes(polygon), Gregory-Leibniz, Machin, Gauss')
     print()
-    precision = int(input('Zadejte pozadovanou presnost (pro preskoceni testovani zadejte 0): '))
+    precision = int(input('Zadejte pozadovanou presnost (int) (pro preskoceni testovani zadejte 0): '))
     if precision > 0:
         print('Vysledky budou v souboru: ', precision, '.txt', sep='')
     else:
@@ -33,7 +33,7 @@ def uvod():
 def zapis(method, runtime):
     global precision
     f = open(f'{precision}.txt', 'wb') 
-    f.write(method, runtime, value, sep='\n')
+    f.write(runtime)
     f.close()
 
 def otestuj(precision):
