@@ -1,12 +1,13 @@
 # Různé metody výpočtu π
 ## Cíl
-Cílem tohoto programu je porovnat různé metody výpočtu π na základě času běhu programu
+Cílem tohoto programu je porovnat různé metody výpočtu π na základě času běhu programu.
 
 ## Závislosti
 matplotlib
 
 ##  Použití
-Program se spouští spuštěním main.py. Ovládá se z konzole.
+Program se spouští spuštěním main.py. Ovládá se příkazy z konzole. Nabízí možnosti vygenerování dat (runtimů
+metod), vykreslení výsledků do grafů a vizualizaci metody Monte Carlo.
 
 ## Využité metody
 Monte Carlo - https://en.wikipedia.org/wiki/Monte_Carlo_method
