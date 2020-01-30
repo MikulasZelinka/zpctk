@@ -5,13 +5,14 @@ import time
 
 ''' 
     zde budou vsechny funkce, ktere budeme testovat
-    kazda funkce vraci cas behu a aproximaci pi
-    na vstupu funkce je start a timeout 
+    kazda funkce vraci cas behu
+    na vstupu funkce je timeout 
 '''
 ref = math.pi
 
-def MonteCarlo(start, timeout, precision):
-    # 
+def MonteCarlo(timeout, precision):
+    # metoda Monte Carlo
+    start = time.time()
     global ref
     inside = 0
     total = 0
@@ -31,8 +32,9 @@ def MonteCarlo(start, timeout, precision):
     runtime = end - start
     return runtime
 
-def Leibnitz(start, timeout, precision):
+def Leibnitz(timeout, precision):
     # vyuzivame tento vztah 4 - 4/3 + 4/5 - 4/7 + 4/9 ... = pi
+    start = time.time()
     global ref
     denominator = 1
     term = 2
@@ -48,27 +50,13 @@ def Leibnitz(start, timeout, precision):
             denominator += 2
             term = 2
         end = time.time()
-    print(pi)
     runtime = end - start
     return runtime
 
 
-def Archimedes(start, timeout, precision):
-    global ref
-
-    pass
-
-def Machin(start, timeout, precision):
-    global ref
-    pass
-
-def Gauss(start, timeout, precision):
-
-    global ref
-    pass
-
-def Sinus(start, timeout, precision):
+def Sinus(timeout, precision):
     # vyuzivame faktu, ze tato funkce konverguje k pi
+    start = time.time()
     global ref
     pi = 3
     end = 0
