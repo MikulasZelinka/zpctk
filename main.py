@@ -1,12 +1,8 @@
-import methods # methods.py --- testovane metody
-import view # view.py --- zobrazeni
-
-import random as rng
-import math
-import numpy as np
-import matplotlib.pyplot as plt
+import methods      # methods.py    <---> testovane metody
+import view         # view.py       <---> zobrazeni
 import time
 import os
+import math
 
 '''
    toto je hlavni cast programu
@@ -14,43 +10,36 @@ import os
    program se bude ovladat z konzole
    vse bude bezet, dokud uzivatel nezada 'exit'
 '''
+
 ref = math.pi # referencni hodnota pi
-timeout = 0
-precision = 0
+timeout = 5 # timeout pro testovani v s
+precision = 8 # pocet desetinnych mist 
+command = ""
+data = [[], [], [], [], []]
 
-def uvod():
-    global precision
-    print('Tento program porovnava iterativni metody approximace pi na zaklade poctu desetinnych mist a casu behu programu')
-    print()
-    print('Porovnavame nasledujici metody: MonteCarlo, Archimedes(polygon), Gregory-Leibniz, Machin, Gauss')
-    print()
-    precision = int(input('Zadejte pozadovanou presnost (int) (pro preskoceni testovani zadejte 0): '))
-    if precision > 0:
-        print('Vysledky budou v souboru: ', precision, '.txt', sep='')
+print("Tento program porovnava iterativni metody approximace pi na zaklade casu behu programu")
+print("---------------------------------------------------------------------------------------------------------------")
+print("Porovnavame nasledujici metody: MonteCarlo, Archimedes(polygon), Gregory-Leibniz, Machin, Gauss")
+print("---------------------------------------------------------------------------------------------------------------")
+command = input("Zadejte pozadavek (otestuj/zobraz/konec): ")
+print("---------------------------------------------------------------------------------------------------------------")
+
+# funkce pro otestovani metod
+def otestuj(vystupni_soubor):
+    pass
+
+# hlavni loop programu
+while command != "konec":
+    if command == "zobraz":
+        view.zobraz()
+    elif command == "otestuj":
+        soubor = input("Zadejte nazev souboru pro zapsani dat: ")
+        print("testuji...")
+        otestuj(soubor)
+
     else:
-        print('Preskakuji testovani')
+        print("spatny pozadavek")
 
-def zapis(method, runtime):
-    global precision
-    f = open(f'{precision}.txt', 'wb') 
-    f.write(runtime)
-    f.close()
-
-def otestuj(precision):
-    # otestuje vsechny metody se zadanym poctem iteraci 
-    pass
-
-if precision > 0:
-    otestuj(precision)
-        # zapis to co funkce vraci do souboru (runtimes pro zadanou metodu)
-else:
-    view.zobraz()
- 
-# tohle bude hlavni smycka programu
-end = False
-while end == False:
-    odpoved = 0
-    end = True 
-    pass
+    command = input("Zadejte pozadavek (otestuj/zobraz/konec): ")
 
 

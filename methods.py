@@ -1,6 +1,5 @@
 import random as rng
 import matplotlib.pyplot as plt
-import numpy as np
 import math
 import time
 
@@ -12,6 +11,7 @@ import time
 ref = math.pi
 
 def MonteCarlo(start, timeout, precision):
+    # 
     global ref
     inside = 0
     total = 0
@@ -31,25 +31,25 @@ def MonteCarlo(start, timeout, precision):
     runtime = end - start
     return runtime
 
-def Gregory(start, timeout, precision):
+def Leibnitz(start, timeout, precision):
+    # vyuzivame tento vztah 4 - 4/3 + 4/5 - 4/7 + 4/9 ... = pi
     global ref
     denominator = 1
-    term = 'even'
+    term = 2
     pi = 0
     end = 0
-    while end - start < timeout and round(4*pi, precision) != round(ref, precision):
-        if term == 'even':
-            pi = pi + (1/denominator)
+    while end - start < timeout and round(pi, precision) != round(ref, precision):
+        if term == 2: 
+            pi = pi + (4/denominator)
             denominator += 2
-            term = 'odd' 
+            term = 1
         else:
-            pi = pi - (1/denominator)
+            pi = pi - (4/denominator)
             denominator += 2
-            term = 'even'
+            term = 2
         end = time.time()
-
+    print(pi)
     runtime = end - start
-    pi = 4*pi
     return runtime
 
 
@@ -63,10 +63,12 @@ def Machin(start, timeout, precision):
     pass
 
 def Gauss(start, timeout, precision):
+
     global ref
     pass
 
 def Sinus(start, timeout, precision):
+    # vyuzivame faktu, ze tato funkce konverguje k pi
     global ref
     pi = 3
     end = 0
@@ -76,8 +78,4 @@ def Sinus(start, timeout, precision):
 
     runtime = end - start
     return runtime
-precision = 5 # docasna promenna
-print(round(ref, precision))
-print('Gregory: ', Gregory(time.time(), 5, precision))
-print('Sinus :', Sinus(time.time(), 5, precision))
-print('MonteCarlo: ', MonteCarlo(time.time(), 5, precision))
+
