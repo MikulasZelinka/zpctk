@@ -13,6 +13,7 @@ def zobraz():
         command = input("Zobrazit grafy nebo vizualizaci metody Monte Carlo? (grafy/mc/konec): ")
         if command == "grafy":
 
+            # vylistovani slozky se skriptem
             slozka = os.listdir(os.curdir)
             print("Soubory: ")
             print("-------------------")
@@ -20,7 +21,10 @@ def zobraz():
                 print(i, end="\n")
             print("-------------------")
 
+            # vybrani souboru
             soubor = input('Zadejte nazev souboru: ')
+
+            # existuje soubor?
             try:
                 with open(soubor) as f:
                     data = f.readlines()
@@ -29,6 +33,7 @@ def zobraz():
                 print("Tento soubor neexistuje")
                 return
 
+            # je to validni soubor?
             try:
                 mc = [float(i) for i in data[0].split()]
                 leibnitz = [float(i) for i in data[1].split()]
@@ -39,7 +44,6 @@ def zobraz():
                 return
 
             # vykresleni 2x2 grafu, pro jednotlive metody
-
             plt.subplot(221)
             plt.title("MonteCarlo method", fontsize=11)
             plt.plot([i for i in range(len(mc))], mc, c="y", marker="v")
@@ -66,8 +70,8 @@ def zobraz():
 
             plt.show()
 
+        # vykresleni metody Monte Carlo
         elif command == "mc":
-            # vizualizace metody Monte Carlo
             points = int(input("Zadejte pocet nahodne vybranych bodu (kvuli rychlosti doporucuji cislo v rozsahu 0 - 2500): "))
             i = 0
             total = 0
@@ -75,10 +79,12 @@ def zobraz():
             while i < points:
                 x = rng.random()
                 y = rng.random()
+                # pokud je bod vevnitr, vykresli cervene
                 if (x**2 + y**2) <= 1:
                     total += 1
                     inside += 1
                     plt.plot(x, y, "ro", alpha=0.25)
+                # pokud je bod venku, vykresli modre
                 else:
                     total += 1
                     plt.plot(x, y, "bo", alpha=0.25)
@@ -87,6 +93,7 @@ def zobraz():
             plt.title("MonteCarlo")
             plt.show()
 
+        # ukonceni view.py
         elif command == "konec":
             return
         else:

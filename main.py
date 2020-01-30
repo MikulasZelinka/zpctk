@@ -31,54 +31,58 @@ while command != "konec":
     if command == "zobraz":
         view.zobraz()
     elif command == "otestuj":
+        precision = int(input("Zadejte maximalni pocet desetinnych mist do ktereho testovat (1 - 15): "))
+        if precision < 1 or precision > 15:
+            print("Mimo rozsah")
+        else:
+            timeout = int(input("Zadejte timeout pro kazdy test (v s): "))
+            soubor = input("Zadejte nazev souboru pro zapsani dat: ")
+            
+            # otestovani kazde metody se zadanymi parametry
+            for i in range(precision):
+                value = methods.MonteCarlo(timeout, i+1)
+                print("Testing MonteCarlo to ", i+1, " decimal places") 
+                if value < timeout:
+                    data[0].append(value)
+                else:
+                    break
 
-        precision = int(input("Zadejte maximalni pocet desetinnych mist do ktereho testovat: "))
-        timeout = int(input("Zadejte timeout pro kazdy test (v s): "))
-        soubor = input("Zadejte nazev souboru pro zapsani dat: ")
+            for i in range(precision):
+                value = methods.Leibnitz(timeout, i+1)
+                print("Testing Leibnitz to ", i+1, " decimal places") 
+                if value < timeout:
+                    data[1].append(value)
+                else:
+                    break
 
-        for i in range(precision):
-            value = methods.MonteCarlo(timeout, i+1)
-            print("Testing MonteCarlo to ", i+1, " decimal places") 
-            if value < timeout:
-                data[0].append(value)
-            else:
-                break
+            for i in range(precision):
+                value = methods.Sinus(timeout, i+1)
+                print("Testing Sinus to ", i+1, " decimal places") 
+                if value < timeout:
+                    data[2].append(value)
+                else:
+                    break
 
-        for i in range(precision):
-            value = methods.Leibnitz(timeout, i+1)
-            print("Testing Leibnitz to ", i+1, " decimal places") 
-            if value < timeout:
-                data[1].append(value)
-            else:
-                break
+            for i in range(precision):
+                value = methods.Basel(timeout, i+1)
+                print("Testing Basel to ", i+1, " decimal places") 
+                if value < timeout:
+                    data[3].append(value)
+                else:
+                    break
 
-        for i in range(precision):
-            value = methods.Sinus(timeout, i+1)
-            print("Testing Sinus to ", i+1, " decimal places") 
-            if value < timeout:
-                data[2].append(value)
-            else:
-                break
+            vystup = open(soubor, "w+")
+            # zapsani dat do souboru pro pozdejsi vykresleni
+            for i in data:
+                vystup.write(" ".join(map(str, i)))
+                vystup.write("\n")
 
-        for i in range(precision):
-            value = methods.Basel(timeout, i+1)
-            print("Testing Basel to ", i+1, " decimal places") 
-            if value < timeout:
-                data[3].append(value)
-            else:
-                break
-
-        vystup = open(soubor, "w+")
-
-        for i in data:
-            vystup.write(" ".join(map(str, i)))
-            vystup.write("\n")
-
-        vystup.close()
+            vystup.close()
 
     else:
         print("spatny pozadavek")
 
     command = input("Zadejte pozadavek (otestuj/zobraz/konec): ")
 
-print("goodbye!")
+# ukonceni programu
+print("program ukoncen")

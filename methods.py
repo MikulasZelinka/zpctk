@@ -18,6 +18,7 @@ def MonteCarlo(timeout, precision):
     total = 0
     end = 0
     pi = 0
+    # podminka pro zadany runtime
     while end - start < timeout and round(pi, precision) != round(ref, precision):
         end = time.time()
         for i in range(10**5):
