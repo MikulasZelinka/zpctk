@@ -18,7 +18,6 @@ def zobraz():
             print("-------------------")
             for i in slozka:
                 print(i, end="\n")
-            
             print("-------------------")
 
             soubor = input('Zadejte nazev souboru: ')
