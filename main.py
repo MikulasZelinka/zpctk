@@ -13,11 +13,11 @@ import math
 
 ref = math.pi # referencni hodnota pi
 command = ""
-data = [[], [], [], []]
+data = [[], [], [], []] # zde jsou docasne ulozena data pred zapsanim do souboru
 
 print("Tento program porovnava iterativni metody approximace pi na zaklade casu behu programu")
 print("---------------------------------------------------------------------------------------------------------------")
-print("Porovnavame nasledujici metody: MonteCarlo, Leibnitzova formule, Sinus formule, ")
+print("Porovnavame nasledujici metody: MonteCarlo, Leibnitzova formule, Sinus formule, Basel formule ")
 print("---------------------------------------------------------------------------------------------------------------")
 command = input("Zadejte pozadavek (otestuj/zobraz/konec): ")
 print("---------------------------------------------------------------------------------------------------------------")
@@ -57,6 +57,14 @@ while command != "konec":
             print("Testing Sinus to ", i+1, " decimal places") 
             if value < timeout:
                 data[2].append(value)
+            else:
+                break
+
+        for i in range(precision):
+            value = methods.Basel(timeout, i+1)
+            print("Testing Basel to ", i+1, " decimal places") 
+            if value < timeout:
+                data[3].append(value)
             else:
                 break
 

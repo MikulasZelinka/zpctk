@@ -67,3 +67,18 @@ def Sinus(timeout, precision):
     runtime = end - start
     return runtime
 
+def Basel(timeout, precision):
+    # 1/1^2 + 1/2^2 + 1/3^2 + ... = (pi^2)/6
+    start = time.time()
+    global ref
+    end = 0
+    pi = 0
+    denominator = 1
+    while end - start < timeout and round(math.sqrt(pi*6), precision) != round(ref, precision):
+        pi = pi + 1/(denominator**2)
+        denominator += 1
+        end = time.time()
+
+    runtime = end - start
+    return runtime
+

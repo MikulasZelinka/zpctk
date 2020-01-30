@@ -33,10 +33,12 @@ def zobraz():
                 mc = [float(i) for i in data[0].split()]
                 leibnitz = [float(i) for i in data[1].split()]
                 sinus = [float(i) for i in data[2].split()]
-                metoda3 = [float(i) for i in data[3].split()]
+                basel = [float(i) for i in data[3].split()]
             except IndexError:
                 print("Spatny soubor")
                 return
+
+            # vykresleni 2x2 grafu, pro jednotlive metody
 
             plt.subplot(221)
             plt.title("MonteCarlo method", fontsize=11)
@@ -57,14 +59,15 @@ def zobraz():
             plt.ylabel("runtime (in seconds)")
 
             plt.subplot(224)
-            plt.title("metoda3", fontsize=11)
-            plt.plot([i for i in range(len(metoda3))], metoda3, c="g", marker="v")
+            plt.title("Basel formula", fontsize=11)
+            plt.plot([i for i in range(len(basel))], basel, c="g", marker="v")
             plt.xlabel("decimal places")
             plt.ylabel("runtime (in seconds)")
 
             plt.show()
 
         elif command == "mc":
+            # vizualizace metody Monte Carlo
             points = int(input("Zadejte pocet nahodne vybranych bodu (kvuli rychlosti doporucuji cislo v rozsahu 0 - 2500): "))
             i = 0
             total = 0
