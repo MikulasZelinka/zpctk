@@ -8,6 +8,8 @@ matplotlib
 ##  Použití
 Program se spouští spuštěním main.py. Ovládá se příkazy z konzole. Nabízí možnosti vygenerování dat (runtimů
 metod), vykreslení výsledků do grafů a vizualizaci metody Monte Carlo.
+![alt text](http://url/to/img.png)
+
 
 ## Využité metody
 Monte Carlo - https://en.wikipedia.org/wiki/Monte_Carlo_method
