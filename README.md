@@ -1,20 +1,15 @@
-# Different methods of computing pi
-## Goal
-The goal is to compare ways to approximate pi to a set number of decimal digits (in a reasonable time).
-The program will display a simple GUI which will contain the plot of the Monte Carlo method
-and possibly graph runtime of different algorithms.
-## Dependencies
-matplotlib,
-numpy
+# Různé metody výpočtu π
+## Cíl
+Cílem tohoto programu je porovnat různé metody výpočtu π na základě času běhu programu
 
-## Usage 
-TODO 
-## Documentation 
-TODO
-## Links
-https://en.wikipedia.org/wiki/Monte_Carlo_method#/media/File:Pi_30K.gif
+## Závislosti
+matplotlib
 
-http://mathworld.wolfram.com/PiFormulas.html
+##  Použití
+Program se spouští spuštěním main.py. Ovládá se z konzole.
 
-https://cs.uwaterloo.ca/~alopez-o/math-faq/mathtext/node12.html
-
+## Využité metody
+Monte Carlo - https://en.wikipedia.org/wiki/Monte_Carlo_method
+Leibnitzova formule: 4 - 4/3 + 4/5 - 4/7 + 4/9 - ... = pi
+Sinus formule: a_(n) = a_(n-1) + sin(a_(n-1)) pro počáteční hodnotu 3 -> π
+Basel formule: 1/(1^2) + 1/(2^2) + 1/(3^2) + ... = (π^2)/6
