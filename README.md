@@ -8,7 +8,9 @@ matplotlib
 ##  Použití
 Program se spouští spuštěním main.py. Ovládá se příkazy z konzole. Nabízí možnosti vygenerování dat (runtimů
 metod), vykreslení výsledků do grafů a vizualizaci metody Monte Carlo.
-![alt text](http://url/to/img.png)
+![alt text](https://github.com/bhonza/zpctk/blob/master/pictures/picture1.png)
+![alt text](https://github.com/bhonza/zpctk/blob/master/pictures/picture2.png)
+![alt text](https://github.com/bhonza/zpctk/blob/master/pictures/picture3.png)
 
 
 ## Využité metody
