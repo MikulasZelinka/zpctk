@@ -13,7 +13,9 @@ import math
 
 ref = math.pi # referencni hodnota pi
 command = ""
-data = [[], [], [], []] # zde jsou docasne ulozena data pred zapsanim do souboru
+data = {} # zde jsou docasne ulozena data pred zapsanim do souboru
+metody = [i for i in dir(methods) if i.startswith("pi")] # zde se dynamicky ukladaji nazvy metod z modulu view.py pro otestovani
+# pro pridani dalsi metody ji staci dopsat se spravnou predponou("pi") do methods.py
 
 print("Tento program porovnava iterativni metody approximace pi na zaklade casu behu programu")
 print("---------------------------------------------------------------------------------------------------------------")
@@ -22,9 +24,13 @@ print("-------------------------------------------------------------------------
 command = input("Zadejte pozadavek (otestuj/zobraz/konec): ")
 print("---------------------------------------------------------------------------------------------------------------")
 
-# funkce pro otestovani metod
-def otestuj(vystupni_soubor):
-    pass
+
+# funkce pro zapsani slovniku do souboru
+def uloz(slovnik, soubor):
+    f = open(soubor, "w")
+    f.write(str(slovnik))
+    f.close()
+
 
 # hlavni loop programu
 while command != "konec":
@@ -39,46 +45,20 @@ while command != "konec":
             soubor = input("Zadejte nazev souboru pro zapsani dat: ")
             
             # otestovani kazde metody se zadanymi parametry
-            for i in range(precision):
-                value = methods.MonteCarlo(timeout, i+1)
-                print("Testing MonteCarlo to ", i+1, " decimal places") 
-                if value < timeout:
-                    data[0].append(value)
-                else:
-                    break
+            for m in metody:
+                for p in range(precision):
+                    value = getattr(methods, m)(timeout, p+1)
+                    print("Testing", m, "to", p+1, "decimal places")
+                    if value < timeout:
+                        if data.get(m) != None:
+                            data[m].append(value)
+                        else:
+                            data[m] = [value]
+                    else:
+                        break
 
-            for i in range(precision):
-                value = methods.Leibnitz(timeout, i+1)
-                print("Testing Leibnitz to ", i+1, " decimal places") 
-                if value < timeout:
-                    data[1].append(value)
-                else:
-                    break
-
-            for i in range(precision):
-                value = methods.Sinus(timeout, i+1)
-                print("Testing Sinus to ", i+1, " decimal places") 
-                if value < timeout:
-                    data[2].append(value)
-                else:
-                    break
-
-            for i in range(precision):
-                value = methods.Basel(timeout, i+1)
-                print("Testing Basel to ", i+1, " decimal places") 
-                if value < timeout:
-                    data[3].append(value)
-                else:
-                    break
-
-            vystup = open(soubor, "w+")
-            # zapsani dat do souboru pro pozdejsi vykresleni
-            for i in data:
-                vystup.write(" ".join(map(str, i)))
-                vystup.write("\n")
-
-            vystup.close()
-
+            print(data) 
+            uloz(data, soubor)
     else:
         print("spatny pozadavek")
 

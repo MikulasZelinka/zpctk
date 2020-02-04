@@ -7,10 +7,11 @@ import time
     zde budou vsechny funkce, ktere budeme testovat
     kazda funkce vraci cas behu
     na vstupu funkce je timeout 
+    nazvy funkci maji predponu pi, kvuli dynamickemu nacteni v main
 '''
 ref = math.pi
 
-def MonteCarlo(timeout, precision):
+def piMonteCarlo(timeout, precision):
     # metoda Monte Carlo
     start = time.time()
     global ref
@@ -33,7 +34,7 @@ def MonteCarlo(timeout, precision):
     runtime = end - start
     return runtime
 
-def Leibnitz(timeout, precision):
+def piLeibnitz(timeout, precision):
     # vyuzivame tento vztah 4 - 4/3 + 4/5 - 4/7 + 4/9 ... = pi
     start = time.time()
     global ref
@@ -55,7 +56,7 @@ def Leibnitz(timeout, precision):
     return runtime
 
 
-def Sinus(timeout, precision):
+def piSinus(timeout, precision):
     # vyuzivame faktu, ze tato funkce konverguje k pi
     start = time.time()
     global ref
@@ -68,7 +69,7 @@ def Sinus(timeout, precision):
     runtime = end - start
     return runtime
 
-def Basel(timeout, precision):
+def piBasel(timeout, precision):
     # 1/1^2 + 1/2^2 + 1/3^2 + ... = (pi^2)/6
     start = time.time()
     global ref

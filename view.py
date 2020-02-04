@@ -5,10 +5,47 @@ import sys
 import random as rng
 
 
+# nacte slovnik ze souboru
+def nacti(soubor):
+    f = open(soubor)
+    data = f.read()
+    f.close()
+    return eval(data)
+
+# dynamicke vykresleni grafu (lepsi vyskladani subplotu)
+def vykresli(data):
+
+    x = int(math.sqrt(len(data)))
+    y = math.ceil(math.sqrt(len(data))) + 1
+    p = 1
+
+    for i in data:
+        plt.subplot(x, y, p)
+        plt.title(i, fontsize=11)
+        plt.plot([i for i in range(len(data[i]))], data[i], c="r", marker="v")
+        plt.xlabel("decimal places")
+        plt.ylabel("runtime (in seconds)")
+        p += 1
+
+    
+    plt.subplot(x, y, p)
+    plt.title("Comparison of all methods")
+
+    for i in data:
+        plt.plot(data[i], marker="v", label=i)
+
+    plt.xlabel("decimal places")
+    plt.ylabel("runtime (in seconds)")
+
+    plt.legend()
+    plt.show()
+
+
+
+# vezme data ze souboru a graficky je zobrazi
+# zobrazi vizualizaci metody Monte Carlo
 def zobraz():
     command = ""
-    # vezme data ze souboru a graficky je zobrazi
-    # zobrazi vizualizaci metody Monte Carlo
     while command != "exit":
         command = input("Zobrazit grafy nebo vizualizaci metody Monte Carlo? (grafy/mc/konec): ")
         if command == "grafy":
@@ -24,51 +61,16 @@ def zobraz():
             # vybrani souboru
             soubor = input('Zadejte nazev souboru: ')
 
-            # existuje soubor?
+            # existuje soubor? + nacteni souboru
             try:
-                with open(soubor) as f:
-                    data = f.readlines()
-                    data = [d.strip() for d in data]
-            except FileNotFoundError:
-                print("Tento soubor neexistuje")
+                data = nacti(soubor)
+            except:
+                print("Tento soubor neexistuje/neni validni")
                 return
 
-            # je to validni soubor?
-            try:
-                mc = [float(i) for i in data[0].split()]
-                leibnitz = [float(i) for i in data[1].split()]
-                sinus = [float(i) for i in data[2].split()]
-                basel = [float(i) for i in data[3].split()]
-            except IndexError:
-                print("Spatny soubor")
-                return
 
-            # vykresleni 2x2 grafu, pro jednotlive metody
-            plt.subplot(221)
-            plt.title("MonteCarlo method", fontsize=11)
-            plt.plot([i for i in range(len(mc))], mc, c="y", marker="v")
-            plt.xlabel("decimal places")
-            plt.ylabel("runtime (in seconds)")
-
-            plt.subplot(222)
-            plt.title("Leibnitz formula", fontsize=11)
-            plt.plot([i for i in range(len(leibnitz))], leibnitz, c="r", marker="v")
-            plt.xlabel("decimal places")
-            plt.ylabel("runtime (in seconds)")
-
-            plt.subplot(223)
-            plt.title("Sinus formula", fontsize=11)
-            plt.plot([i for i in range(len(sinus))], sinus, c="b", marker="v")
-            plt.xlabel("decimal places")
-            plt.ylabel("runtime (in seconds)")
-
-            plt.subplot(224)
-            plt.title("Basel formula", fontsize=11)
-            plt.plot([i for i in range(len(basel))], basel, c="g", marker="v")
-            plt.xlabel("decimal places")
-            plt.ylabel("runtime (in seconds)")
-
-            plt.show()
+            # vykresleni grafu
+            vykresli(data)
 
         # vykresleni metody Monte Carlo
         elif command == "mc":
@@ -89,7 +91,7 @@ def zobraz():
                     total += 1
                     plt.plot(x, y, "bo", alpha=0.25)
                 i += 1
-
+            plt.axis([0, 1, 0, 1])
             plt.title("MonteCarlo")
             plt.show()
 
