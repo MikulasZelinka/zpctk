@@ -21,7 +21,8 @@ metod), vykreslení výsledků do grafů a vizualizaci metody Monte Carlo.
 ### test
 Monte Carlo - https://en.wikipedia.org/wiki/Monte_Carlo_method
 
-Leibnitzova formule: $4 - 4/3 + 4/5 - 4/7 + 4/9 - ... = pi$
+Leibnitzova formule:
+![](http://latex.codecogs.com/gif.latex?4%20-%20%5Cfrac%7B4%7D%7B3%7D%20&plus;%20%5Cfrac%7B4%7D%7B5%7D%20-%20%5Cfrac%7B4%7D%7B7%7D%20&plus;%20%5Cfrac%7B4%7D%7B9%7D%20-%20...%20%3D%20%5Cpi)
 
 Sinus formule: $a_(n) = a_(n-1) + sin(a_(n-1)) pro počáteční hodnotu 3 -> π$
 
