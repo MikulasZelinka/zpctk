@@ -10,11 +10,11 @@ Program se spouští spuštěním main.py. Ovládá se příkazy z konzole. Nab�
 metod), vykreslení výsledků do grafů a vizualizaci metody Monte Carlo.
 
 ### Ovládání
-![alt text](https://github.com/bhonza/zpctk/blob/master/pictures/picture1.png)
+![alt text](pictures/picture1.png)
 ### Grafy
-![alt text](https://github.com/bhonza/zpctk/blob/master/pictures/picture2.png)
+![alt text](pictures/results.png)
 ### MonteCarlo
-![alt text](https://github.com/bhonza/zpctk/blob/master/pictures/picture3.png)
+![alt text](pictures/picture3.png)
 
 
 ## Využité metody
@@ -31,3 +31,5 @@ Sinus formule (s počáteční hodnotou 3):
 Basel formule:
 
 ![](http://latex.codecogs.com/gif.latex?%5Cfrac%7B1%7D%7B1%5E2%7D%20&plus;%20%5Cfrac%7B1%7D%7B2%5E2%7D%20&plus;%20%5Cfrac%7B1%7D%7B3%5E2%7D%20&plus;%20...%20%3D%20%5Cfrac%7B%5Cpi%5E2%7D%7B6%7D)
+
+Chudnovskyho formule - https://en.wikipedia.org/wiki/Chudnovsky_algorithm

@@ -1,7 +1,7 @@
 import random as rng
-import matplotlib.pyplot as plt
 import math
 import time
+import decimal
 
 ''' 
     zde budou vsechny funkce, ktere budeme testovat
@@ -22,7 +22,7 @@ def piMonteCarlo(timeout, precision):
     # podminka pro zadany runtime
     while end - start < timeout and round(pi, precision) != round(ref, precision):
         end = time.time()
-        for i in range(10**5):
+        for _ in range(10**5):
             a = rng.random()
             b = rng.random()
             if (a*a + b*b) <= 1:
@@ -43,7 +43,7 @@ def piLeibnitz(timeout, precision):
     pi = 0
     end = 0
     while end - start < timeout and round(pi, precision) != round(ref, precision):
-        if term == 2: 
+        if term == 2:
             pi = pi + (4/denominator)
             denominator += 2
             term = 1
@@ -54,7 +54,6 @@ def piLeibnitz(timeout, precision):
         end = time.time()
     runtime = end - start
     return runtime
-
 
 def piSinus(timeout, precision):
     # vyuzivame faktu, ze tato funkce konverguje k pi
@@ -84,3 +83,30 @@ def piBasel(timeout, precision):
     runtime = end - start
     return runtime
 
+def piChudnovsky(timeout, precision):
+    # popis: https://en.wikipedia.org/wiki/Chudnovsky_algorithm
+    # source: https://dev.to/parambirs/til-calculating-n-digits-of-pi-using-chudnovsky-algorithm-1j10
+    start = time.time()
+    global ref
+
+    C = 426880 * decimal.Decimal(10005).sqrt()
+    K = 6.
+    M = 1.
+    X = 1
+    L = 13591409
+    S = L
+    i = 1
+
+    while True:
+        M = M * (K ** 3 - 16 * K) / ((i + 1) ** 3)
+        L += 545140134
+        X *= -262537412640768000
+        S += decimal.Decimal(M * L) / X
+
+        pi = C / S
+
+        end = time.time()
+        if (end - start >= timeout) or (round(pi, precision) == round(decimal.Decimal(ref), precision)):
+            return end - start
+
+        i += 1

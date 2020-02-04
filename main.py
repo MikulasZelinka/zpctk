@@ -1,7 +1,7 @@
+from collections import defaultdict
+
 import methods      # methods.py    <---> testovane metody
 import view         # view.py       <---> zobrazeni
-import time
-import os
 import math
 
 '''
@@ -11,15 +11,16 @@ import math
    vse bude bezet, dokud uzivatel nezada 'konec'
 '''
 
+MAX_PREC = 1000
 ref = math.pi # referencni hodnota pi
 command = ""
-data = {} # zde jsou docasne ulozena data pred zapsanim do souboru
+data = defaultdict(list) # zde jsou docasne ulozena data pred zapsanim do souboru
 metody = [i for i in dir(methods) if i.startswith("pi")] # zde se dynamicky ukladaji nazvy metod z modulu view.py pro otestovani
 # pro pridani dalsi metody ji staci dopsat se spravnou predponou("pi") do methods.py
 
 print("Tento program porovnava iterativni metody approximace pi na zaklade casu behu programu")
 print("---------------------------------------------------------------------------------------------------------------")
-print("Porovnavame nasledujici metody: MonteCarlo, Leibnitzova formule, Sinus formule, Basel formule ")
+print("Porovnavame nasledujici metody: MonteCarlo, Leibnitzova formule, Sinus formule, Basel formule, Chudnovsky")
 print("---------------------------------------------------------------------------------------------------------------")
 command = input("Zadejte pozadavek (otestuj/zobraz/konec): ")
 print("---------------------------------------------------------------------------------------------------------------")
@@ -28,7 +29,7 @@ print("-------------------------------------------------------------------------
 # funkce pro zapsani slovniku do souboru
 def uloz(slovnik, soubor):
     f = open(soubor, "w")
-    f.write(str(slovnik))
+    f.write(str(dict(slovnik)))
     f.close()
 
 
@@ -37,8 +38,8 @@ while command != "konec":
     if command == "zobraz":
         view.zobraz()
     elif command == "otestuj":
-        precision = int(input("Zadejte maximalni pocet desetinnych mist do ktereho testovat (1 - 15): "))
-        if precision < 1 or precision > 15:
+        precision = int(input(f"Zadejte maximalni pocet desetinnych mist do ktereho testovat (1 - {MAX_PREC}): "))
+        if precision < 1 or precision > MAX_PREC:
             print("Mimo rozsah")
         else:
             timeout = int(input("Zadejte timeout pro kazdy test (v s): "))
@@ -47,17 +48,13 @@ while command != "konec":
             # otestovani kazde metody se zadanymi parametry
             for m in metody:
                 for p in range(precision):
-                    value = getattr(methods, m)(timeout, p+1)
                     print("Testing", m, "to", p+1, "decimal places")
-                    if value < timeout:
-                        if data.get(m) != None:
-                            data[m].append(value)
-                        else:
-                            data[m] = [value]
-                    else:
+                    value = getattr(methods, m)(timeout, p+1)
+                    data[m].append(value)
+                    if value > timeout:
                         break
 
-            #print(data)
+            print(data)
             uloz(data, soubor)
     else:
         print("spatny pozadavek")

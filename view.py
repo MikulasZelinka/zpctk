@@ -1,7 +1,6 @@
 import matplotlib.pyplot as plt
 import math
 import os
-import sys
 import random as rng
 
 
@@ -14,9 +13,11 @@ def nacti(soubor):
 
 # dynamicke vykresleni grafu (lepsi vyskladani subplotu)
 def vykresli(data):
+    plt.figure(figsize=(20, 10))
+    plt.tight_layout()
 
-    x = int(math.sqrt(len(data)))
-    y = math.ceil(math.sqrt(len(data))) + 1
+    x = math.floor(math.sqrt(len(data)))
+    y = math.ceil(math.sqrt(len(data)))
     p = 1
 
     for i in data:
@@ -27,18 +28,22 @@ def vykresli(data):
         plt.ylabel("runtime (in seconds)")
         p += 1
 
-    
     plt.subplot(x, y, p)
     plt.title("Comparison of all methods")
 
     for i in data:
-        plt.plot(data[i], marker="v", label=i)
+        plt.plot(data[i], marker="v", label=i, alpha=0.6)
 
     plt.xlabel("decimal places")
     plt.ylabel("runtime (in seconds)")
 
     plt.legend()
+    plt.xlim(0, 20)
+    plt.xticks(range(21))
+    plt.grid(alpha=0.2)
+    fig = plt.gcf()
     plt.show()
+    fig.savefig('./pictures/results.png')
 
 
 
