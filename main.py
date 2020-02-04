@@ -57,7 +57,7 @@ while command != "konec":
                     else:
                         break
 
-            print(data) 
+            #print(data)
             uloz(data, soubor)
     else:
         print("spatny pozadavek")
