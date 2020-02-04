@@ -18,7 +18,6 @@ metod), vykreslení výsledků do grafů a vizualizaci metody Monte Carlo.
 
 
 ## Využité metody
-### test
 Monte Carlo - https://en.wikipedia.org/wiki/Monte_Carlo_method
 
 Leibnitzova formule:
