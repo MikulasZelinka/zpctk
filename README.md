@@ -18,6 +18,7 @@ metod), vykreslení výsledků do grafů a vizualizaci metody Monte Carlo.
 
 
 ## Využité metody
+### test
 Monte Carlo - https://en.wikipedia.org/wiki/Monte_Carlo_method
 
 Leibnitzova formule: $4 - 4/3 + 4/5 - 4/7 + 4/9 - ... = pi$
